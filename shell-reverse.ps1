@@ -1,5 +1,5 @@
 ﻿param(
-[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm,[swith]$metasploit
+[string]$Lhost=$null,[string]$Lport=$null,[switch]$web,[switch]$python,[switch]$bash,[switch]$perl,[switch]$php,[switch]$ruby,[switch]$java,[switch]$xterm,[switch]$metasploit
 
 )
 
