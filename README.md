@@ -12,14 +12,14 @@
     ./shell-reverse.ps1 -LHOST 192.168.1.20 -LPORT 4444 -
 
 # Languaje
-&nbsp;&nbsp;&nbsp;**Perl**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**Python**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**Python3**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**Ruby**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**PHP**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**Java**&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;**Bash**&nbsp;&nbsp;
-
+&nbsp;&nbsp;&nbsp;**Perl**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**Python**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**Python3**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**Ruby**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**PHP**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**Java**&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;**Bash**&nbsp;&nbsp;  
+  
 
 # Video Example
 ![](https://github.com/cybervaca/ShellReverse/blob/master/example.gif)
