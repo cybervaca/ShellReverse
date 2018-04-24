@@ -3,9 +3,11 @@
 # Install in Debian or Kali
 
     git clone https://github.com/cybervaca/ShellReverse
-    cd shellreverse
+    cd Shellreverse
     sudo apt-get update > /dev/null
     sudo apt-get install libunwind8 libicu55  
+    wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu55_55.1-7ubuntu0.4_amd64.deb
+    sudo apt install ./libicu55_55.1-7ubuntu0.4_amd64.deb
     wget https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-alpha.13/powershell_6.0.0-alpha.13-1ubuntu1.16.04.1_amd64.deb
     sudo dpkg -i powershell_6.0.0-alpha.13-1ubuntu1.16.04.1_amd64.deb
     powershell
